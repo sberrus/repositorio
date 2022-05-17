@@ -1,0 +1,68 @@
+.buttonHolder {
+  text-align: center;
+  background-color: #000;
+  border-radius: 1rem;
+  z-index: 1;
+  padding: 1em;
+}
+.buttonHolder:hover + div > img {
+  filter: opacity(1);
+}
+
+.showButton {
+  padding: 0.8em;
+}
+
+.card {
+  margin: auto;
+  width: 95%;
+  border-radius: 10px;
+  border: 1px solid #12dc01;
+}
+
+.cardBody {
+  z-index: 1;
+  padding: 1.5em 2em;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.comment {
+  color: #12dc01;
+}
+.comment::before {
+  content: "// ";
+}
+
+.techIconContainer {
+  position: relative;
+  display: flex;
+  overflow: auto;
+}
+
+.iconContainer {
+  margin: 0.5em 0.2em;
+  border: 1px solid #12dc01;
+  border-radius: 50%;
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  color: #12dc01;
+}
+
+.linkHolder {
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.linkHolder a {
+  color: #12dc01;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=offcanvasElement.module.css.map */

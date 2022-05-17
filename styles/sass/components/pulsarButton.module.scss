@@ -1,0 +1,60 @@
+//
+@import "../variables.scss";
+
+.buttonWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	animation: showUp 1s 6.4s ease forwards;
+}
+
+.pulsarButton,
+.pulsarDecoration {
+	position: absolute;
+	background-color: $dark;
+	outline: 3px solid $light;
+	border: none;
+	height: 2em;
+	width: 2em;
+	text-align: center;
+	border-radius: 100%;
+}
+
+.pulsarDecoration {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: pulsarPop 2s 6.5s ease alternate infinite;
+	border: none;
+	outline: none;
+}
+
+.pulsarDecoration:hover {
+	animation: none;
+	transition: 2s;
+	width: 80px;
+	height: 80px;
+	background-color: #d1d1d150;
+}
+
+@keyframes showUp {
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes pulsarPop {
+	to {
+		width: 80px;
+		height: 80px;
+		background-color: #d1d1d150;
+	}
+}
+
+@media (max-width: 767px) {
+	//diferent delay for little displays
+	.buttonWrapper {
+		animation: showUp 1s 5.5s ease forwards;
+	}
+}

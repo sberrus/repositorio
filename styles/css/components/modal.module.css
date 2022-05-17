@@ -1,0 +1,33 @@
+.modal {
+  background-color: #1d1d1d50;
+}
+
+.modalHeader {
+  background-color: #0e6806;
+  border-bottom: #000;
+}
+
+.modalBody {
+  color: #d1d1d1;
+  background-color: #000;
+}
+.modalBody input,
+.modalBody textarea {
+  background-color: #000;
+}
+
+.modalFooter {
+  background-color: #000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modalInput {
+  color: #d1d1d1;
+}
+.modalInput:focus {
+  color: #d1d1d1;
+  background-color: #000;
+}
+
+/*# sourceMappingURL=modal.module.css.map */

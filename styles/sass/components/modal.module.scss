@@ -1,0 +1,32 @@
+@import "../variables.scss";
+.modal {
+	background-color: #1d1d1d50;
+}
+
+.modalHeader {
+	background-color: $green-dark;
+	border-bottom: #000;
+}
+
+.modalBody {
+	color: $light;
+	background-color: $dark;
+
+	input,
+	textarea {
+		background-color: $dark;
+	}
+}
+
+.modalFooter {
+	background-color: $dark;
+	display: flex;
+	justify-content: flex-end;
+}
+.modalInput {
+	color: $light;
+	&:focus {
+		color: $light;
+		background-color: $dark;
+	}
+}
