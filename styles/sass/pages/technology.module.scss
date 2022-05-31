@@ -5,10 +5,14 @@
 	background-attachment: fixed;
 	background-size: 35px;
 	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 //CARDS SECTION
 .cardContainer {
+	width: 100%;
 	height: 100%;
 	padding-bottom: 3em;
 	display: flex;
@@ -16,9 +20,11 @@
 	align-items: center;
 	justify-content: center;
 	section {
+		height: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: center;
 	}
 }
 
