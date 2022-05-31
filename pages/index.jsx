@@ -24,7 +24,7 @@ export default function Home() {
 			<main className="bg-dark text-light">
 				<HeaderDisplay />
 				<About />
-				<div className="mb-5" id="technologies"></div>
+				<div className="mb-5" id="projects"></div>
 				<Technology />
 				<Contact />
 			</main>

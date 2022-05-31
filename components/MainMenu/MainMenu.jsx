@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 //React-Bootstrap
 import { Container, Nav, Navbar } from "react-bootstrap";
 
@@ -33,9 +34,7 @@ const MainMenu = () => {
 							<Nav.Link className={styled.navLink} href="#projects">
 								Projects
 							</Nav.Link>
-							<Nav.Link className={styled.navLink} href="#technologies">
-								Tecnologias y Herramientas
-							</Nav.Link>
+
 							<Nav.Link
 								className={styled.navLink}
 								href="#contact"

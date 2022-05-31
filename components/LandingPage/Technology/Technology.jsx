@@ -23,7 +23,10 @@ const Technology = () => {
 									<Col sm={12} md={6}>
 										{/* technology card */}
 										<Card className={`${styled.tecnologiesCard}`}>
-											<OffcanvasComponent assets={frontendAssets} offcanvasContent="¿Cómo se centra un div?">
+											<OffcanvasComponent
+												assets={frontendAssets}
+												offcanvasContent="¿Cómo se centra un div?"
+											>
 												Proyectos de FrontEnd
 											</OffcanvasComponent>
 											<div className={styled.cardBG}>
@@ -38,7 +41,10 @@ const Technology = () => {
 									<Col sm={12} md={6}>
 										{/* technology card */}
 										<Card className={`${styled.tecnologiesCard}`}>
-											<OffcanvasComponent assets={frontendAssets} offcanvasContent="¿Cómo se centra un div?">
+											<OffcanvasComponent
+												assets={frontendAssets}
+												offcanvasContent="¿Cómo se centra un div?"
+											>
 												Proyectos de Backend
 											</OffcanvasComponent>
 											<div className={styled.cardBG}>

@@ -49,14 +49,18 @@ const About = () => {
 									</p>
 									<p>
 										A lo largo de estos años he desarrollado habilidades en las siguientes
-										herramientas:
+										herramientas{" "}
+										<small className="text-success">
+											aunque seguramente me estoy olvidando de varias
+										</small>
+										:
 									</p>
 								</div>
+								<CloudItem />
 							</Col>
 						</Row>
 					</Container>
 				</div>
-				<CloudItem />
 			</section>
 		</div>
 	);
