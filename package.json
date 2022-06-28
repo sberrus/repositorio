@@ -12,13 +12,15 @@
     "deploy": "next build && next export"
   },
   "dependencies": {
+    "TagCloud": "^2.2.0",
     "bootstrap": "^5.1.3",
     "bootstrap-icons": "^1.8.1",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-bootstrap": "^2.2.1",
     "react-dom": "17.0.2",
-    "TagCloud": "^2.2.0"
+    "react-google-recaptcha": "^2.1.0",
+    "sanitize-html": "^2.7.0"
   },
   "devDependencies": {
     "eslint": "8.11.0",
