@@ -1,12 +1,13 @@
 @import "../variables.scss";
 .technologiesSection {
+	padding-top: 3em;
 	background-color: $black;
 	background-image: url("/assets/img/dot.svg");
 	background-attachment: fixed;
 	background-size: 35px;
 	min-height: 100vh;
 	display: flex;
-	align-items: center;
+	align-items: start;
 	justify-content: center;
 }
 

@@ -4,7 +4,7 @@ import style from "../../styles/css/components/modal.module.css";
 
 //Modal Context
 import { useModalContext } from "../../context/modalContext";
-import { useEffect } from "react";
+import React from "react";
 
 function FormModal() {
 	const modalContext = useModalContext();
@@ -14,6 +14,10 @@ function FormModal() {
 		modalContext.toggleModal();
 	};
 
+	const onSubmit = (e) => {
+		e.preventDefault();
+		console.log("mensaje enviado");
+	};
 	return (
 		<>
 			<Button variant="outline-success w-100 py-3" onClick={handleShow}>
@@ -26,7 +30,12 @@ function FormModal() {
 					<Modal.Title>¿Con o sin azúcar?</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className={style.modalBody}>
-					<Form>
+					<Form
+						id="contact-form"
+						onSubmit={(e) => {
+							onSubmit(e);
+						}}
+					>
 						<Form.Group className="mb-3" controlId="correo">
 							<Form.Label>Correo Electrónico</Form.Label>
 							<Form.Control
@@ -61,7 +70,7 @@ function FormModal() {
 					<Button variant="outline-danger" onClick={handleClose} disabled>
 						Cerrar
 					</Button>
-					<Button variant="outline-light" onClick={handleClose} disabled>
+					<Button variant="outline-light" type="submit" form="contact-form">
 						Enviar Mensaje
 					</Button>
 				</Modal.Footer>
