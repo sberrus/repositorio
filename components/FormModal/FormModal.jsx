@@ -1,19 +1,24 @@
 // imports
-import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import sanitize from "sanitize-html";
+import { useForm, SubmitHandler } from "react-hook-form";
 // styles
 import style from "../../styles/css/components/modal.module.css";
 //Modal Context
 import { useModalContext } from "../../context/modalContext";
+import { useState } from "react";
 
 function FormModal() {
 	// states
-	const [email, setEmail] = useState("");
-	const [subjet, setSubjet] = useState("");
-	const [message, setMessage] = useState("");
 	const [RCres, setRCRes] = useState(null);
+	// react-hook-form
+	const {
+		register,
+		handleSubmit,
+		watch,
+		formState: { errors },
+	} = useForm();
 
 	// modal config
 	const modalContext = useModalContext();
@@ -22,45 +27,42 @@ function FormModal() {
 		modalContext.toggleModal();
 	};
 
-	// submit data to backend
-	const onSubmit = (e) => {
-		e.preventDefault();
-		const emailValidationRegex = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
-		if (!emailValidationRegex.test(email)) {
-			console.log("Correo eléctronico no válido");
-			return;
-		}
-		if (subjet.length <= 0) {
-			console.log("Debe contener un subjet");
-			return;
-		}
-		if (message.length <= 0) {
-			console.log("El mensaje no debe estar vacío");
-			return;
-		}
-		// 2. sanitize message
-		const sMessage = sanitize(message);
-		// 3. recaptcha res exists?
+	const onSubmit = (data) => {
+		// recaptcha res exists?
 		if (!RCres) {
-			console.log("reCaptcha no válido");
+			console.log("reCaptcha obligatorio");
 			return;
 		}
-		// 4. clear states
-		setEmail("");
-		setSubjet("");
-		setMessage("");
-		setRCRes(null);
+		sendEmail(data);
+		console.log("correo enviado");
+	};
+
+	// send the email data to backend
+	const sendEmail = async (data) => {
+		// sanitize message
+		const sMessage = sanitize(data.message);
+
+		const emailData = { ...data, message: sMessage };
+		emailData["g-recaptcha-response"] = RCres;
+
+		try {
+			const res = await fetch("http://localhost:8080/api/contact-form", {
+				method: "POST",
+				headers: { "content-type": "application/json" },
+				body: JSON.stringify(emailData),
+			});
+			console.log(await res.json());
+		} catch (error) {}
 
 		console.log("----------- MSG ----------");
-		console.log({
-			email,
-			subjet,
-			sMessage,
-		});
+		console.log(emailData);
+		// Clear States
+		// setRCRes(null);
 	};
 
 	const saveRecaptchaRes = (res) => {
 		console.log(res);
+		setRCRes(res);
 	};
 	return (
 		<>
@@ -74,21 +76,17 @@ function FormModal() {
 					<Modal.Title>¿Con o sin azúcar?</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className={style.modalBody}>
-					<Form
-						id="contact-form"
-						onSubmit={(e) => {
-							onSubmit(e);
-						}}
-					>
+					<Form id="contact-form" onSubmit={handleSubmit(onSubmit)}>
 						<Form.Group className="mb-3" controlId="correo">
 							<Form.Label>Correo Electrónico</Form.Label>
 							<Form.Control
-								type="text"
+								type="email"
 								placeholder="satoshi@nakamoto.btc"
 								autoFocus
 								className={style.modalInput}
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
+								{...register("from", {
+									pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+								})}
 							/>
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="asunto">
@@ -96,10 +94,11 @@ function FormModal() {
 							<Form.Control
 								type="text"
 								placeholder='Esribir "asuntos" no es mi fuerte'
-								autoFocus
 								className={style.modalInput}
-								value={subjet}
-								onChange={(e) => setSubjet(e.target.value)}
+								{...register("subject", {
+									min: 10,
+									max: 150,
+								})}
 							/>
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="cuerpo">
@@ -109,19 +108,21 @@ function FormModal() {
 								rows={8}
 								className={style.modalInput}
 								placeholder="TODO: Encontrar ahora quien rellene este formulario 👀"
-								value={message}
-								onChange={(e) => setMessage(e.target.value)}
+								{...register("message", {
+									min: 10,
+									max: 5000,
+								})}
 							/>
 						</Form.Group>
 					</Form>
 				</Modal.Body>
 				<Modal.Footer className={style.modalFooter}>
 					<ReCAPTCHA sitekey="6LfIfKogAAAAAI_HE9bqBjC9FzFTKA5lN5W8Ymq6" onChange={saveRecaptchaRes} theme="dark" />
-					{RCres !== null && (
-						<Button variant="outline-light" type="submit" form="contact-form" className="float-end">
-							Enviar Mensaje
-						</Button>
-					)}
+					{/* {RCres !== null && ( */}
+					<Button variant="outline-light" type="submit" form="contact-form" className="float-end">
+						Enviar Mensaje
+					</Button>
+					{/* )} */}
 				</Modal.Footer>
 			</Modal>
 		</>
