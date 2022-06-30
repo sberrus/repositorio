@@ -7,13 +7,13 @@ const EmailSentToast = () => {
 	const modalContext = useModalContext();
 
 	return (
-		<Container fluid className="position-sticky bottom-0">
+		<Container fluid className="position-sticky bottom-0" style={{ zIndex: "1000" }}>
 			<Row>
 				<Col xs={6}>
 					<Toast
 						onClose={() => modalContext.toggleToast()}
 						show={modalContext.showToast}
-						delay={5000}
+						delay={10000}
 						autohide
 						bg={"dark"}
 						className="border border-success mb-2"

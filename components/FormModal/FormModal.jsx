@@ -79,7 +79,14 @@ function FormModal() {
 			</Button>
 
 			{/* Background backdrop */}
-			<Modal show={modalContext.show} onHide={handleClose} centered className={style.modal}>
+			<Modal
+				show={modalContext.show}
+				onHide={handleClose}
+				centered
+				backdrop={"static"}
+				className={style.modal}
+				contentClassName="bg-dark"
+			>
 				<Modal.Header closeButton className={style.modalHeader}>
 					<Modal.Title>¿Con o sin azúcar?</Modal.Title>
 				</Modal.Header>
