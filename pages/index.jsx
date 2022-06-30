@@ -9,6 +9,7 @@ import HeaderDisplay from "../components/LandingPage/HeaderDisplay";
 import Technology from "../components/LandingPage/Technology";
 //Styles Sass
 import styled from "../styles/css/landing.module.css";
+import EmailSentToast from "../components/FormModal/EmailSentToast";
 
 export default function Home() {
 	return (
@@ -27,6 +28,7 @@ export default function Home() {
 				<div className="mb-5" id="projects"></div>
 				<Technology />
 				<Contact />
+				<EmailSentToast />
 			</main>
 		</>
 	);

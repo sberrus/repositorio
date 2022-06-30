@@ -7,7 +7,7 @@ const Contact = () => {
 		<div>
 			<section className={`${styled.contactContainer}`} id="contact">
 				<div>
-					<h2 className="mb-4 text-center">¿Te apetece un café? </h2>
+					<h2 className="mb-4 text-center">¿Le apetece un café? </h2>
 					<FormModal />
 				</div>
 			</section>

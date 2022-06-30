@@ -2,22 +2,24 @@
 import { Button, Form, Modal } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import sanitize from "sanitize-html";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 // styles
 import style from "../../styles/css/components/modal.module.css";
 //Modal Context
 import { useModalContext } from "../../context/modalContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 function FormModal() {
 	// states
 	const [RCres, setRCRes] = useState(null);
+	// ref
+	const emailForm = useRef();
 	// react-hook-form
 	const {
 		register,
 		handleSubmit,
-		watch,
 		formState: { errors },
+		reset,
 	} = useForm();
 
 	// modal config
@@ -51,13 +53,19 @@ function FormModal() {
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify(emailData),
 			});
-			console.log(await res.json());
+			console.log(await res);
+			if (res.status !== 200) {
+				// show error
+				console.log(await res.json());
+				return;
+			} else {
+				reset();
+				setRCRes(null);
+				// show successfully sent email toast
+				modalContext.toggleToast();
+				modalContext.toggleModal();
+			}
 		} catch (error) {}
-
-		console.log("----------- MSG ----------");
-		console.log(emailData);
-		// Clear States
-		// setRCRes(null);
 	};
 
 	const saveRecaptchaRes = (res) => {
@@ -76,15 +84,17 @@ function FormModal() {
 					<Modal.Title>¿Con o sin azúcar?</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className={style.modalBody}>
-					<Form id="contact-form" onSubmit={handleSubmit(onSubmit)}>
+					<Form id="contact-form" onSubmit={handleSubmit(onSubmit)} ref={emailForm}>
 						<Form.Group className="mb-3" controlId="correo">
 							<Form.Label>Correo Electrónico</Form.Label>
 							<Form.Control
 								type="email"
 								placeholder="satoshi@nakamoto.btc"
 								autoFocus
+								isInvalid={errors.from}
 								className={style.modalInput}
 								{...register("from", {
+									required: true,
 									pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 								})}
 							/>
@@ -95,9 +105,9 @@ function FormModal() {
 								type="text"
 								placeholder='Esribir "asuntos" no es mi fuerte'
 								className={style.modalInput}
+								isInvalid={errors.subject}
 								{...register("subject", {
-									min: 10,
-									max: 150,
+									required: true,
 								})}
 							/>
 						</Form.Group>
@@ -108,9 +118,9 @@ function FormModal() {
 								rows={8}
 								className={style.modalInput}
 								placeholder="TODO: Encontrar ahora quien rellene este formulario 👀"
+								isInvalid={errors.message}
 								{...register("message", {
-									min: 10,
-									max: 5000,
+									required: true,
 								})}
 							/>
 						</Form.Group>

@@ -4,12 +4,16 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
 	const [show, setShow] = useState(false);
+	const [showToast, setShowToast] = useState(false);
 
 	let modalState = {
 		show,
 		toggleModal() {
-			!show && alert("Hay que añadir el modal de captcha para evitar problemas con el spam");
 			setShow(!show);
+		},
+		showToast,
+		toggleToast() {
+			setShowToast(!showToast);
 		},
 	};
 
