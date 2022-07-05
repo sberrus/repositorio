@@ -3,13 +3,12 @@ import Head from "next/head";
 //Components
 import MainMenu from "../components/MainMenu/MainMenu";
 //Sections
-import About from "../components/LandingPage/About";
-import Contact from "../components/LandingPage/Contact";
-import HeaderDisplay from "../components/LandingPage/HeaderDisplay";
-import Technology from "../components/LandingPage/Technology";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import HeaderDisplay from "./components/HeaderDisplay";
+import Technology from "./components/Technology";
 //Styles Sass
-import styled from "../styles/css/landing.module.css";
-import EmailSentToast from "../components/FormModal/EmailSentToast";
+import styles from "./components/Landing.module.scss";
 
 export default function Home() {
 	return (
@@ -19,7 +18,7 @@ export default function Home() {
 				<meta name="description" content="Samdev Portafolio Website" />
 				<link rel="icon" href="/samdevLogo.svg" />
 			</Head>
-			<header className={styled.menuContainer}>
+			<header className={styles.menuContainer}>
 				<MainMenu />
 			</header>
 			<main className="bg-dark text-light">
@@ -28,7 +27,6 @@ export default function Home() {
 				<div className="mb-5" id="projects"></div>
 				<Technology />
 				<Contact />
-				<EmailSentToast />
 			</main>
 		</>
 	);

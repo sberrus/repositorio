@@ -1,5 +1,5 @@
 //Global Styles
-import "../styles/css/global.css";
+import "../styles/sass/global.scss";
 import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
 //Modal Context

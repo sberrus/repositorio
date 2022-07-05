@@ -1,0 +1,64 @@
+@import "../../styles/sass/variables.scss";
+
+//MENU CONTAINER
+.menuContainer {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	border-bottom: 1px solid #d1d1d150;
+	z-index: 1000;
+	opacity: 0;
+	animation: showMenu 1s 5s ease forwards;
+}
+
+//LOGO SECTION
+.headerLogo {
+	height: 1.7em;
+	// animation-name: rotation;
+	animation: rotation 15s infinite linear;
+}
+
+.navLink {
+	transform: translateY(-100%);
+}
+
+//LINKS SECTION
+.navLink:nth-child(1) {
+	animation: jump 0.5s 5.5s ease forwards;
+}
+.navLink:nth-child(2) {
+	animation: jump 0.5s 5.7s ease forwards;
+}
+.navLink:nth-child(3) {
+	animation: jump 0.5s 5.9s ease forwards;
+}
+.navLink:nth-child(4) {
+	animation: jump 0.5s 6.1s ease forwards;
+}
+@keyframes jump {
+	to {
+		transform: translateY(0%);
+	}
+}
+
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(180deg);
+	}
+}
+
+@keyframes showMenu {
+	to {
+		opacity: 1;
+	}
+}
+
+@media (max-width: 768px) {
+	.navLink {
+		transform: translate(0);
+		animation: none;
+	}
+}

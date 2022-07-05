@@ -1,0 +1,69 @@
+@import "../../../../styles/sass/variables.scss";
+
+.buttonHolder {
+	text-align: center;
+	background-color: $dark;
+	border-radius: 1rem;
+	z-index: 1;
+	padding: 1em;
+	&:hover + div > img {
+		filter: opacity(1);
+	}
+}
+
+.showButton {
+	padding: 0.8em;
+}
+
+.card {
+	margin: auto;
+	width: 95%;
+	border-radius: 10px;
+	border: $border;
+}
+
+// Card Content
+.cardBody {
+	z-index: 1;
+	padding: 1.5em 2em;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.15);
+}
+.comment {
+	color: $success;
+	&::before {
+		content: "// ";
+	}
+}
+
+// Technologies icons
+.techIconContainer {
+	position: relative;
+	display: flex;
+	overflow: auto;
+}
+.iconContainer {
+	margin: 0.5em 0.2em;
+	border: $border;
+	border-radius: 50%;
+	min-width: 50px;
+	min-height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 25px;
+	color: $success;
+}
+
+//Links
+.linkHolder {
+	margin-top: 1em;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	& a {
+		color: $success;
+		font-weight: bold;
+		text-decoration: none;
+	}
+}
