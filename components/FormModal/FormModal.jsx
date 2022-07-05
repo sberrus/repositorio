@@ -1,5 +1,5 @@
 // imports
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Col, Container, Form, Modal, Row, Toast } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import sanitize from "sanitize-html";
 import { useForm } from "react-hook-form";
@@ -12,6 +12,8 @@ import { useRef, useState } from "react";
 function FormModal() {
 	// states
 	const [RCres, setRCRes] = useState(null);
+	const [isError, setIsError] = useState(false);
+	const [isSending, setIsSending] = useState(false);
 	// ref
 	const emailForm = useRef();
 	// react-hook-form
@@ -29,18 +31,23 @@ function FormModal() {
 		modalContext.toggleModal();
 	};
 
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
 		// recaptcha res exists?
 		if (!RCres) {
 			console.log("reCaptcha obligatorio");
 			return;
 		}
-		sendEmail(data);
-		console.log("correo enviado");
+		try {
+			await sendEmail(data);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	// send the email data to backend
 	const sendEmail = async (data) => {
+		setIsSending(true);
+		setIsError(false);
 		// sanitize message
 		const sMessage = sanitize(data.message);
 
@@ -53,23 +60,26 @@ function FormModal() {
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify(emailData),
 			});
-			console.log(await res);
 			if (res.status !== 200) {
 				// show error
+				setIsSending(false);
+				setIsError(true);
 				console.log(await res.json());
-				return;
 			} else {
 				reset();
 				setRCRes(null);
 				// show successfully sent email toast
 				modalContext.toggleToast();
 				modalContext.toggleModal();
+				setIsSending(false);
 			}
-		} catch (error) {}
+		} catch (error) {
+			setIsSending(false);
+			setIsError(true);
+		}
 	};
 
 	const saveRecaptchaRes = (res) => {
-		console.log(res);
 		setRCRes(res);
 	};
 	return (
@@ -135,11 +145,33 @@ function FormModal() {
 				</Modal.Body>
 				<Modal.Footer className={style.modalFooter}>
 					<ReCAPTCHA sitekey="6LfIfKogAAAAAI_HE9bqBjC9FzFTKA5lN5W8Ymq6" onChange={saveRecaptchaRes} theme="dark" />
-					{/* {RCres !== null && ( */}
-					<Button variant="outline-light" type="submit" form="contact-form" className="float-end">
-						Enviar Mensaje
-					</Button>
-					{/* )} */}
+					<Container>
+						<Row>
+							<Col xs={12}>
+								<Toast
+									onClose={() => setIsError(false)}
+									show={isError}
+									delay={10000}
+									autohide
+									bg={"danger"}
+									className="float-end"
+								>
+									<Toast.Body>Ha ocurrido un error al enviar el formulario. Intentelo más tarde</Toast.Body>
+								</Toast>
+							</Col>
+						</Row>
+					</Container>
+					{RCres !== null && (
+						<>
+							{isSending ? (
+								<div className={style.ldsDualRing}></div>
+							) : (
+								<Button variant="outline-light" type="submit" form="contact-form" className={"float-end"}>
+									Enviar Mensaje
+								</Button>
+							)}
+						</>
+					)}
 				</Modal.Footer>
 			</Modal>
 		</>
