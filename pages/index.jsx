@@ -14,7 +14,7 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>Development Portfolio</title>
+				<title>Samdev</title>
 				<meta name="description" content="Samdev Portafolio Website" />
 				<link rel="icon" href="/samdevLogo.svg" />
 			</Head>
