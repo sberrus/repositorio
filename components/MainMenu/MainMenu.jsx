@@ -5,7 +5,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import style from "./MainMenu.module.scss";
 
 //modal Context
-import { useModalContext } from "../../context/modalContext";
+import { useModalContext } from "/context/modalContext";
 
 const MainMenu = () => {
 	const modalContext = useModalContext();
