@@ -4,8 +4,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import sanitize from "sanitize-html";
 import { useForm } from "react-hook-form";
 //Modal Context
-import { useModalContext } from "../../../../context/modalContext";
-import { useRef, useState } from "react";
+import { useModalContext } from "/context/modalContext";
+import { useEffect, useRef, useState } from "react";
 // styles
 import style from "./FormModal.module.scss";
 
@@ -14,6 +14,18 @@ function FormModal() {
 	const [RCres, setRCRes] = useState(null);
 	const [isError, setIsError] = useState(false);
 	const [isSending, setIsSending] = useState(false);
+	const [isDev, setIsDev] = useState(false);
+
+	// effect
+	useEffect(() => {
+		const { hostname } = window.location;
+		if (hostname === "localhost") {
+			setIsDev(true);
+		}
+
+		return () => {};
+	}, []);
+
 	// ref
 	const emailForm = useRef();
 	// react-hook-form
@@ -54,8 +66,10 @@ function FormModal() {
 		const emailData = { ...data, message: sMessage };
 		emailData["g-recaptcha-response"] = RCres;
 
+		const urlFormApi = isDev ? "http://localhost:8080/api/contact-form" : "https://samdev/api/contact-form";
+
 		try {
-			const res = await fetch("http://localhost:8080/api/contact-form", {
+			const res = await fetch(urlFormApi, {
 				method: "POST",
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify(emailData),
@@ -101,7 +115,7 @@ function FormModal() {
 					<Modal.Title>¿Con o sin azúcar?</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className={style.modalBody}>
-					<Form id="contact-form" onSubmit={handleSubmit(onSubmit)}>
+					<Form id="contact-form" onSubmit={handleSubmit(onSubmit)} ref={emailForm}>
 						<Form.Group className="mb-3" controlId="correo">
 							<Form.Label>Correo Electrónico</Form.Label>
 							<Form.Control

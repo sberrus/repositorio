@@ -5,16 +5,21 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import style from "./MainMenu.module.scss";
 
 //modal Context
-import { useModalContext } from "../../context/modalContext";
+import { useModalContext } from "/context/modalContext";
 
 const MainMenu = () => {
 	const modalContext = useModalContext();
+
+	const scrollTop = () => {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	};
 
 	return (
 		<div className={style.menuContainer}>
 			<Navbar bg="dark" variant="dark" expand="md" id="mainmenu" collapseOnSelect>
 				<Container>
-					<Navbar.Brand href="#home">
+					<Navbar.Brand href="#top">
 						<img
 							alt="brand Logo"
 							src="/assets/img/PersonalLogo.svg"
@@ -24,7 +29,7 @@ const MainMenu = () => {
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto text-center w-100 d-flex justify-content-center">
-							<Nav.Link className={style.navLink} href="#headerDisplay">
+							<Nav.Link className={style.navLink} href="#top" onClick={scrollTop}>
 								Home
 							</Nav.Link>
 							<Nav.Link className={style.navLink} href="#about">
