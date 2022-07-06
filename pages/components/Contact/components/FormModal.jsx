@@ -5,7 +5,7 @@ import sanitize from "sanitize-html";
 import { useForm } from "react-hook-form";
 //Modal Context
 import { useModalContext } from "/context/modalContext";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 // styles
 import style from "./FormModal.module.scss";
 
@@ -14,17 +14,6 @@ function FormModal() {
 	const [RCres, setRCRes] = useState(null);
 	const [isError, setIsError] = useState(false);
 	const [isSending, setIsSending] = useState(false);
-	const [isDev, setIsDev] = useState(false);
-
-	// effect
-	useEffect(() => {
-		const { hostname } = window.location;
-		if (hostname === "localhost") {
-			setIsDev(true);
-		}
-
-		return () => {};
-	}, []);
 
 	// ref
 	const emailForm = useRef();
@@ -66,7 +55,7 @@ function FormModal() {
 		const emailData = { ...data, message: sMessage };
 		emailData["g-recaptcha-response"] = RCres;
 
-		const urlFormApi = isDev ? "http://localhost:8080/api/contact-form" : "https://samdev/api/contact-form";
+		const urlFormApi = "https://samdev-backend.herokuapp.com/api/contact-form";
 
 		try {
 			const res = await fetch(urlFormApi, {
