@@ -13,14 +13,14 @@ const About = () => {
 			<div className={style.aboutSection}>
 				<Container className="pt-5 d-flex">
 					<Row>
-						<Col md={9} className="m-auto">
+						<Col md={9} xl={6} className="m-auto">
 							<div className={`${style.aboutTitleContainer} my-3 mb-5`}>
 								<div className={style.aboutTitleBgDecoration}>
 									<img className="h-100" src="/assets/img/blobDecoration2.svg" alt="" />
 								</div>
 								<h2 className="text-center fw-light bg-dark rouded p-1">Bienvenido!</h2>
 							</div>
-							<div className={`${style.aboutHistory} text-center fw-light mb-5`}>
+							<div className={`${style.aboutHistory} fw-light mb-5`}>
 								<p>
 									¡Hola! Mi nombre es <span className="text-success fw-normal">Samuel Berrus</span> y soy
 									desarrollador web fullstack.
@@ -29,7 +29,7 @@ const About = () => {
 									Durante la pandemia un amigo me dio un consejo que fue el que en realidad me inicio en este
 									mundillo.
 								</p>
-								<div className="d-flex justify-content-center w-75 m-auto">
+								<div className="d-flex justify-content-center ms-3">
 									<div className="w-100 fst-italic">
 										<p>
 											&quot;Aprende Java&quot; <br />

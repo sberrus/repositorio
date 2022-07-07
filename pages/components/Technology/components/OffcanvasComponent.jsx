@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Button, Col, Offcanvas, Row } from "react-bootstrap";
 
 // sass
-import styled from "./OffcanvasComponent.module.scss";
+import style from "./OffcanvasComponent.module.scss";
+import utilsStyles from "../../../../styles/sass/utils.module.scss";
 import {
 	AxiosIcon,
 	BootstrapIcon,
@@ -29,8 +30,8 @@ const OffcanvasComponent = ({
 
 	return (
 		<>
-			<div className={styled.buttonHolder}>
-				<Button variant="outline-success" onClick={handleShow} className={styled.showButton}>
+			<div className={style.buttonHolder}>
+				<Button variant="outline-success" onClick={handleShow} className={style.showButton}>
 					{children}
 				</Button>
 			</div>
@@ -51,15 +52,15 @@ const OffcanvasComponent = ({
 					<Row>
 						{/* Technologies grid */}
 						{assets.map((tech, idx) => (
-							<Col lg={4} md={6} xs={12} className={`${styled.card} mb-3`} key={idx}>
+							<Col lg={4} md={6} xs={12} className={`${style.card} mb-3`} key={idx}>
 								{/* Tehcnologie Card */}
 
 								{/* Body holder */}
-								<div className={styled.cardBody}>
+								<div className={style.cardBody}>
 									{tech?.highlight && (
 										<>
 											{/* comment heiglight */}
-											<span className={`${styled.comment}`}>
+											<span className={`${style.comment} ${utilsStyles.blink}`}>
 												Proyecto destacado <br />
 											</span>
 										</>
@@ -67,40 +68,40 @@ const OffcanvasComponent = ({
 									<p>{tech.title}</p>
 									<p>{tech.description}</p>
 
-									<div className={styled.techIconContainer}>
-										<div className={styled.iconContainer}>
+									<div className={style.techIconContainer}>
+										<div className={style.iconContainer}>
 											<HtmlIcon />
 										</div>
-										<div className={styled.iconContainer}>
+										<div className={style.iconContainer}>
 											<CssIcon />
 										</div>
 
-										<div className={styled.iconContainer}>
+										<div className={style.iconContainer}>
 											<JsIcon />
 										</div>
-										<div className={styled.iconContainer}>
+										<div className={style.iconContainer}>
 											<ReactIcon />
 										</div>
-										<div className={styled.iconContainer}>
+										<div className={style.iconContainer}>
 											<BootstrapIcon />
 										</div>
-										<div className={styled.iconContainer}>
+										<div className={style.iconContainer}>
 											<ChartJsIcon />
 										</div>
-										<div className={styled.iconContainer}>
+										<div className={style.iconContainer}>
 											<ReactRouterDomIcon />
 										</div>
-										<div className={styled.iconContainer}>
+										<div className={style.iconContainer}>
 											<AxiosIcon />
 										</div>
 									</div>
 
 									{/* Links Holder */}
-									<div className={styled.linkHolder}>
+									<div className={style.linkHolder}>
 										{tech.links?.webpage && (
 											<a
 												href={tech.links.webpage}
-												className={`${styled.link}`}
+												className={`${style.link}`}
 												target="_BLANK"
 												rel="noreferrer"
 											>
@@ -110,7 +111,7 @@ const OffcanvasComponent = ({
 										{tech.links?.github && (
 											<a
 												href={tech.links.github}
-												className={`${styled.link}`}
+												className={`${style.link}`}
 												target="_BLANK"
 												rel="noreferrer"
 											>
