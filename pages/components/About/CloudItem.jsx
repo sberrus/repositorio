@@ -11,7 +11,7 @@ const CloudItem = () => {
 		);
 		const options = {
 			maxSpeed: "slow",
-			radius: cloudRef.current.clientWidth <= 425 ? cloudRef.current.clientWidth - 200 : 250,
+			radius: cloudRef.current.clientWidth <= 425 ? cloudRef.current.clientWidth - 220 : 250,
 		};
 
 		const tagCloud = TagCloud(cloudRefContainer, technologies, options);

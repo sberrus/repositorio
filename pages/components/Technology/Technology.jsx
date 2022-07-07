@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 //Components
 import { Card, Col, Container, Row } from "react-bootstrap";
 import OffcanvasComponent from "./components/OffcanvasComponent";

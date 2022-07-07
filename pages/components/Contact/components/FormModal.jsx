@@ -56,6 +56,7 @@ function FormModal() {
 		emailData["g-recaptcha-response"] = RCres;
 
 		const urlFormApi = "https://samdev-backend.herokuapp.com/api/contact-form";
+		// const urlFormApi = "http://localhost:8080/api/contact-form";
 
 		try {
 			const res = await fetch(urlFormApi, {
