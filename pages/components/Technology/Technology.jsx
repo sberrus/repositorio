@@ -3,7 +3,8 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import OffcanvasComponent from "./components/OffcanvasComponent";
 //data
-import frontendAssets from "../../../models/technologies";
+import frontendTechStack from "../../../models/frontendTechStack";
+import backendTechStack from "../../../models/backendTechStack";
 //Sass Styles
 import style from "./Technology.module.scss";
 
@@ -22,7 +23,10 @@ const Technology = () => {
 									<Col sm={12} md={6}>
 										{/* technology card */}
 										<Card className={`${style.tecnologiesCard}`}>
-											<OffcanvasComponent assets={frontendAssets} offcanvasContent="¿Cómo se centra un div?">
+											<OffcanvasComponent
+												assets={frontendTechStack}
+												offcanvasContent="¿Cómo se centra un div?"
+											>
 												Proyectos de FrontEnd
 											</OffcanvasComponent>
 											<div className={style.cardBG}>
@@ -37,7 +41,10 @@ const Technology = () => {
 									<Col sm={12} md={6}>
 										{/* technology card */}
 										<Card className={`${style.tecnologiesCard}`}>
-											<OffcanvasComponent assets={frontendAssets} offcanvasContent="¿Cómo se centra un div?">
+											<OffcanvasComponent
+												assets={backendTechStack}
+												offcanvasContent="¿Cómo se centra un div?"
+											>
 												Proyectos de Backend
 											</OffcanvasComponent>
 											<div className={style.cardBG}>

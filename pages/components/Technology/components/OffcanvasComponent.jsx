@@ -3,17 +3,7 @@ import { Button, Col, Offcanvas, Row } from "react-bootstrap";
 
 // sass
 import style from "./OffcanvasComponent.module.scss";
-import utilsStyles from "../../../../styles/sass/utils.module.scss";
-import {
-	AxiosIcon,
-	BootstrapIcon,
-	ChartJsIcon,
-	CssIcon,
-	HtmlIcon,
-	JsIcon,
-	ReactIcon,
-	ReactRouterDomIcon,
-} from "../../../../components/Icons/Icons";
+import TechAsset from "./TechAsset";
 
 const OffcanvasComponent = ({
 	headerText = "Stack de Tecnologías",
@@ -48,79 +38,10 @@ const OffcanvasComponent = ({
 				</Offcanvas.Header>
 				<Offcanvas.Body>
 					{offcanvasContent}
-					<hr />
-					<Row>
+					<Row className={"mt-3"}>
 						{/* Technologies grid */}
 						{assets.map((tech, idx) => (
-							<Col lg={4} md={6} xs={12} className={`${style.card} mb-3`} key={idx}>
-								{/* Tehcnologie Card */}
-
-								{/* Body holder */}
-								<div className={style.cardBody}>
-									{tech?.highlight && (
-										<>
-											{/* comment heiglight */}
-											<span className={`${style.comment} ${utilsStyles.blink}`}>
-												Proyecto destacado <br />
-											</span>
-										</>
-									)}
-									<p>{tech.title}</p>
-									<p>{tech.description}</p>
-
-									<div className={style.techIconContainer}>
-										<div className={style.iconContainer}>
-											<HtmlIcon />
-										</div>
-										<div className={style.iconContainer}>
-											<CssIcon />
-										</div>
-
-										<div className={style.iconContainer}>
-											<JsIcon />
-										</div>
-										<div className={style.iconContainer}>
-											<ReactIcon />
-										</div>
-										<div className={style.iconContainer}>
-											<BootstrapIcon />
-										</div>
-										<div className={style.iconContainer}>
-											<ChartJsIcon />
-										</div>
-										<div className={style.iconContainer}>
-											<ReactRouterDomIcon />
-										</div>
-										<div className={style.iconContainer}>
-											<AxiosIcon />
-										</div>
-									</div>
-
-									{/* Links Holder */}
-									<div className={style.linkHolder}>
-										{tech.links?.webpage && (
-											<a
-												href={tech.links.webpage}
-												className={`${style.link}`}
-												target="_BLANK"
-												rel="noreferrer"
-											>
-												<i className="bi bi-globe2"></i> webpage
-											</a>
-										)}
-										{tech.links?.github && (
-											<a
-												href={tech.links.github}
-												className={`${style.link}`}
-												target="_BLANK"
-												rel="noreferrer"
-											>
-												<i className="bi bi-github"></i> github
-											</a>
-										)}
-									</div>
-								</div>
-							</Col>
+							<TechAsset tech={tech} key={idx} />
 						))}
 					</Row>
 				</Offcanvas.Body>
