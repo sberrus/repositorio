@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row, Toast } from "react-bootstrap";
-import { useModalContext } from "../../../../context/modalContext";
+import { useModalContext } from "../../../context/modalContext";
 
 const EmailSentToast = () => {
 	const modalContext = useModalContext();

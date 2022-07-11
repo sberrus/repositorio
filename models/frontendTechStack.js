@@ -9,8 +9,6 @@ const technologies = [
 	},
 	{
 		title: "DIGITAL THREAD - virtual machine",
-		description:
-			"Un banco virtual 🤷‍♂️. Create una cuenta, realiza transferencias, obten un resumen de tus movimientos.",
 		links: { github: "https://github.com/sberrus/digital-threat", webpage: "https://zclient.samdev.es" },
 		building: true,
 		techStack: ["Ethers", "Sass", "Css", "Html", "Js", "React", "ReactRouterDom"],

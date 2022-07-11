@@ -3,12 +3,12 @@ import Head from "next/head";
 //Components
 import MainMenu from "../components/MainMenu/MainMenu";
 //Sections
-import About from "./components/About";
-import Contact from "./components/Contact";
-import HeaderDisplay from "./components/HeaderDisplay";
-import Technology from "./components/Technology";
+import About from "../components/About/About";
+import Contact from "../components/Contact";
+import HeaderDisplay from "../components/HeaderDisplay";
+import Technology from "../components/Technology";
 //Styles Sass
-import styles from "./components/Landing.module.scss";
+import styles from "../components/Landing.module.scss";
 
 export default function Home() {
 	return (

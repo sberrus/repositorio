@@ -3,8 +3,8 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import OffcanvasComponent from "./components/OffcanvasComponent";
 //data
-import frontendTechStack from "../../../models/frontendTechStack";
-import backendTechStack from "../../../models/backendTechStack";
+import frontendTechStack from "../../models/frontendTechStack";
+import backendTechStack from "../../models/backendTechStack";
 //Sass Styles
 import style from "./Technology.module.scss";
 

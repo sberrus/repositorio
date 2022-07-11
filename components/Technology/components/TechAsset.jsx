@@ -9,7 +9,7 @@ import {
 	JsIcon,
 	ReactIcon,
 	ReactRouterDomIcon,
-} from "../../../../components/Icons/Icons";
+} from "../../../components/Icons/Icons";
 import style from "./OffcanvasComponent.module.scss";
 
 const TechAsset = ({ tech }) => {
@@ -18,7 +18,7 @@ const TechAsset = ({ tech }) => {
 			{tech?.building && (
 				<div className={style.building}>
 					<small className="text-success">Building...</small>
-					<h5>{tech.title}</h5>
+					<h5>{tech?.title ?? "titulo"}</h5>
 					<div className={style.linkHolder}>
 						<a href={tech.links.github} className={`${style.link}`} target="_BLANK" rel="noreferrer">
 							<i className="bi bi-github"></i> github
