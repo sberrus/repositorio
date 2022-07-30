@@ -5,7 +5,7 @@
 	position: fixed;
 	top: 0;
 	width: 100%;
-	border-bottom: 1px solid #d1d1d150;
+	border-bottom: 1px solid $success;
 	z-index: 1000;
 	opacity: 0;
 	animation: showMenu 1s 5s ease forwards;
