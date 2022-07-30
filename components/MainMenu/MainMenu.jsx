@@ -20,7 +20,7 @@ const MainMenu = () => {
 		<div className={style.menuContainer}>
 			<Navbar bg="dark" variant="dark" expand="md" id="mainmenu" collapseOnSelect>
 				<Container>
-					<Navbar.Brand href="/#top">
+					<Navbar.Brand href="/#top" className="ms-2">
 						<img
 							alt="brand Logo"
 							src="/assets/img/PersonalLogo.svg"
@@ -47,7 +47,7 @@ const MainMenu = () => {
 									modalContext.toggleModal();
 								}}
 							>
-								Contacto
+								Contact Form
 							</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
